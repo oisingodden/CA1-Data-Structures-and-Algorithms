@@ -10,4 +10,6 @@ package wildlife_tracker;
  */
 public interface DisplayInterface {
     
+    String getSummary();
+    
 }

@@ -10,4 +10,6 @@ package wildlife_tracker;
  */
 public interface VerifyInterface {
     
+    void verify();
+    
 }
