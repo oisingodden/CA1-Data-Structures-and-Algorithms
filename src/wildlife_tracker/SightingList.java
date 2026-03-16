@@ -10,4 +10,13 @@ package wildlife_tracker;
  */
 public class SightingList {
     
+    private Node head;
+    private int size;
+    
+    public SightingList() {
+        head = null;
+        size = 0;
+    }
+    
+    
 }

@@ -10,4 +10,29 @@ package wildlife_tracker;
  */
 public class Node {
     
+    private WildLifeSighting data;
+    private Node next;
+    
+    public Node (WildLifeSighting data) {
+        
+        this.data = data;
+        this.next = null;
+    }
+
+    public WildLifeSighting getData() {
+        return data;
+    }
+
+    public Node getNext() {
+        return next;
+    }
+
+    public void setData(WildLifeSighting data) {
+        this.data = data;
+    }
+
+    public void setNext(Node next) {
+        this.next = next;
+    }
+    
 }

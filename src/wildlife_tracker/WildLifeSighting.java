@@ -75,7 +75,7 @@ public class WildLifeSighting implements VerifyInterface, DisplayInterface {
     @Override
     public String getSummary(){
         String status = verified ? "Verified" : "Still pending";
-        return species + "found in" + location + "by" + observer;
+        return species + "found in" + location + "by" + observer + "(" + status + ")";
     }
     
     
@@ -84,7 +84,7 @@ public class WildLifeSighting implements VerifyInterface, DisplayInterface {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // TODO code application logic here 
     }
     
 }
