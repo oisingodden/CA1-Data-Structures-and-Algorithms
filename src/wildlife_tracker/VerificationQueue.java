@@ -34,4 +34,8 @@ public class VerificationQueue {
     public int size(){
         return queue.size();
     }
+    
+    public Integer poll(){
+        return queue.poll();
+    }
 }
