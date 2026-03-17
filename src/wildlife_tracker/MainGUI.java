@@ -4,6 +4,11 @@
  */
 package wildlife_tracker;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author oisinclarke
@@ -11,7 +16,22 @@ package wildlife_tracker;
 public class MainGUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainGUI.class.getName());
-
+    private SightingList sightingList;
+    private ActionStack actionStack;
+    private VerificationQueue verificationQueue;
+    
+    private JTextField speciesField;
+    private JTextField observerField;
+    private JTextField locationField;
+    private JLabel speciesLabel;
+    private JLabel observerLabel;
+    private JLabel locationLabel;
+    private JButton addButton;
+    private JButton displayAllButton;
+    private JButton verifyNextButton;
+    private JButton deleteButton;          
+    private JButton undoButton;
+    private JTextArea displayArea;
     /**
      * Creates new form MainGUI
      */
