@@ -4,10 +4,7 @@
  */
 package wildlife_tracker;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,24 +16,23 @@ public class MainGUI extends javax.swing.JFrame {
     private SightingList sightingList;
     private ActionStack actionStack;
     private VerificationQueue verificationQueue;
-    
-    private JTextField speciesField;
-    private JTextField observerField;
-    private JTextField locationField;
-    private JLabel speciesLabel;
-    private JLabel observerLabel;
-    private JLabel locationLabel;
-    private JButton addButton;
-    private JButton displayAllButton;
-    private JButton verifyNextButton;
-    private JButton deleteButton;          
-    private JButton undoButton;
-    private JTextArea displayArea;
+    private int selectedIndex = -1;
     /**
      * Creates new form MainGUI
      */
     public MainGUI() {
+        System.out.println("Constructor started");
         initComponents();
+        System.out.println("initComponents completed");
+        sightingList = new SightingList();
+        actionStack = new ActionStack();
+        verificationQueue = new VerificationQueue();
+        System.out.println("ADTs initialized");
+    }
+    
+    
+    private void displayAll(){
+        displayArea.setText(sightingList.getAllSightings());
     }
 
     /**
@@ -48,53 +44,58 @@ public class MainGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        observerField = new javax.swing.JTextField();
+        locationField = new javax.swing.JTextField();
+        speciesField = new javax.swing.JTextField();
+        addButton = new javax.swing.JButton();
+        displayAllButton = new javax.swing.JButton();
+        verifyNextButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        undoButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        displayArea = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        observerLabel = new javax.swing.JLabel();
+        locationLabel = new javax.swing.JLabel();
+        speciesLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setActionCommand("observerField");
+        observerField.setActionCommand("observerField");
 
-        jTextField2.setActionCommand("locationField");
+        locationField.setActionCommand("locationField");
 
-        jTextField3.setActionCommand("speciesField");
+        speciesField.setActionCommand("speciesField");
 
-        jButton1.setText("Add");
-        jButton1.setActionCommand("addButton");
+        addButton.setText("Add");
+        addButton.setActionCommand("addButton");
+        addButton.addActionListener(this::addButtonActionPerformed);
 
-        jButton2.setText("Display");
-        jButton2.setActionCommand("displayAllButton");
+        displayAllButton.setText("Display");
+        displayAllButton.setActionCommand("displayAllButton");
+        displayAllButton.addActionListener(this::displayAllButtonActionPerformed);
 
-        jButton3.setText("Verify");
-        jButton3.setActionCommand("verifyNextButton");
+        verifyNextButton.setText("Verify");
+        verifyNextButton.setActionCommand("verifyNextButton");
+        verifyNextButton.addActionListener(this::verifyNextButtonActionPerformed);
 
-        jButton4.setText("Delete");
-        jButton4.setActionCommand("deleteButton");
+        deleteButton.setText("Delete");
+        deleteButton.setActionCommand("deleteButton");
+        deleteButton.addActionListener(this::deleteButtonActionPerformed);
 
-        jButton5.setText("Undo");
-        jButton5.setActionCommand("undoButton");
+        undoButton.setText("Undo");
+        undoButton.setActionCommand("undoButton");
+        undoButton.addActionListener(this::undoButtonActionPerformed);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        displayArea.setColumns(20);
+        displayArea.setRows(5);
+        jScrollPane1.setViewportView(displayArea);
 
-        jLabel1.setText("Observer");
+        observerLabel.setText("Observer");
 
-        jLabel3.setText("Location");
+        locationLabel.setText("Location");
 
-        jLabel4.setText("Species");
+        speciesLabel.setText("Species");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,32 +105,31 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(displayAllButton)
+                            .addComponent(undoButton))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton5))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton4)
-                                    .addComponent(jButton3)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel2))))
+                            .addComponent(deleteButton)
+                            .addComponent(verifyNextButton)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(145, 145, 145)
-                        .addComponent(jButton1)))
+                        .addComponent(addButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(speciesLabel)
+                            .addComponent(observerLabel)
+                            .addComponent(locationLabel))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(observerField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(locationField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(speciesField, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel2)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,20 +137,20 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(observerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(observerLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3))
+                        .addComponent(locationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(locationLabel))
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(speciesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(speciesLabel))
                 .addGap(36, 36, 36)
-                .addComponent(jButton1)
+                .addComponent(addButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -158,17 +158,82 @@ public class MainGUI extends javax.swing.JFrame {
                         .addGap(15, 15, 15))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))
+                            .addComponent(displayAllButton)
+                            .addComponent(verifyNextButton))
                         .addGap(84, 84, 84)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4)
-                            .addComponent(jButton5))
+                            .addComponent(deleteButton)
+                            .addComponent(undoButton))
                         .addGap(72, 72, 72))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        String species = speciesField.getText();
+        String location = locationField.getText();
+        String observer = observerField.getText();
+        
+        if (species.isEmpty() || location.isEmpty() || observer.isEmpty()){
+            JOptionPane.showMessageDialog(this, "fill out all fields");
+            return;
+        }
+        
+        WildLifeSighting sighting = new WildLifeSighting(species, location, observer);
+        sightingList.add(sighting);     
+        verificationQueue.offer(sightingList.size() - 1);
+        actionStack.push("Added: " + species);
+        
+        speciesField.setText("");
+        locationField.setText("");
+        observerField.setText("");
+        displayAll();
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void displayAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAllButtonActionPerformed
+        // TODO add your handling code here:
+        displayAll();
+    }//GEN-LAST:event_displayAllButtonActionPerformed
+
+    private void verifyNextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyNextButtonActionPerformed
+        // TODO add your handling code here:
+        if (verificationQueue.isEmpty()){
+            JOptionPane.showMessageDialog(this, "No sightings");
+            return;
+        }
+        Integer index = verificationQueue.poll();
+        WildLifeSighting sighting = sightingList.get(index);
+        if(sighting != null){
+            sighting.verify();
+            actionStack.push("Verify");
+            displayAll();
+        }
+    }//GEN-LAST:event_verifyNextButtonActionPerformed
+
+    private void undoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoButtonActionPerformed
+        // TODO add your handling code here:
+        if (actionStack.isEmpty()){
+            JOptionPane.showMessageDialog(this, "cant undo");
+            return;
+        }
+    }//GEN-LAST:event_undoButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+        if (selectedIndex == -1){
+            JOptionPane.showMessageDialog(this, "select a sighting");
+            return;
+        }
+        WildLifeSighting sighting = sightingList.get(selectedIndex);
+        if (sighting != null){
+            actionStack.push("Deleted: " + sighting.getSpecies());
+            sightingList.remove(selectedIndex);
+            selectedIndex = -1;
+            displayAll();
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,19 +261,19 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton displayAllButton;
+    private javax.swing.JTextArea displayArea;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField locationField;
+    private javax.swing.JLabel locationLabel;
+    private javax.swing.JTextField observerField;
+    private javax.swing.JLabel observerLabel;
+    private javax.swing.JTextField speciesField;
+    private javax.swing.JLabel speciesLabel;
+    private javax.swing.JButton undoButton;
+    private javax.swing.JButton verifyNextButton;
     // End of variables declaration//GEN-END:variables
 }

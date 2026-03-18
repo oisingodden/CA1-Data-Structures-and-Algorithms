@@ -72,8 +72,7 @@ public class SightingList {
     public String getAllSightings() {
         String result = "";
         Node current = head;
-        int index = 0;
-        
+        int index = 0;       
         while (current != null){
             result = result + index + current.getData().getSummary();
             current = current.getNext();
